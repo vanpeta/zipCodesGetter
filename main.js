@@ -2,9 +2,10 @@ var lat;
 var lng;
 $('#sendAddress').click(function(e) {
   e.preventDefault();
+  $('#postalCodesWrapper').addClass('hidden');
   $('#postalCodes').empty();
   var address = document.getElementById('address').value;
-  var radius = document.getElementById('radius').value;
+  var radius = Math.round(document.getElementById('radius').value*1.61);
   var numberOfResults = document.getElementById('numberOfResults').value;
   var addressForGoogle = encodeURIComponent(address);
   $.ajax({
@@ -17,6 +18,7 @@ $('#sendAddress').click(function(e) {
     $.ajax({
       url: "http://api.geonames.org/findNearbyPostalCodesJSON?lat="+lat+"&lng="+lng+"&maxRows="+numberOfResults+"&radius="+radius+"&username=vanpeta",
       success: function (response) {
+        $('#postalCodesWrapper').removeClass('hidden');
         response.postalCodes.forEach(function(e) {
           $('#postalCodes').append("'"+e.postalCode+"', ");
         })

@@ -21,5 +21,8 @@ html {
 #getZipCodes {
 	margin-bottom: 2%
 }
+.hidden {
+  display: none;
+}
 
 
