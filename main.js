@@ -6,7 +6,7 @@ $('#sendAddress').click(function(e) {
   $('#postalCodes').empty();
   var address = document.getElementById('address').value;
   var radius = Math.round(document.getElementById('radius').value*1.61);
-  var numberOfResults = document.getElementById('numberOfResults').value;
+  var numberOfResults = document.getElementById('numberOfResults').value || 500;
   var addressForGoogle = encodeURIComponent(address);
   $.ajax({
   url: "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false",
