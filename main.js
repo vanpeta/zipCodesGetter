@@ -1,3 +1,5 @@
+console.log('loaded')
+
 var lat;
 var lng;
 $('#sendAddress').click(function(e) {
@@ -13,6 +15,8 @@ $('#sendAddress').click(function(e) {
   success: function(response){
       lat = response.results[0].geometry.location.lat;
       lng = response.results[0].geometry.location.lng;
+      console.log("lat= ",lat);
+      console.log("lng= ",lng);
     }
   }).then(function() {
     $.ajax({
@@ -29,3 +33,4 @@ $('#sendAddress').click(function(e) {
   });
 });
 
+//LZ6oL7k2QGYDanDX9bA9AuQaGK2F51MR1SfMZzOQgNuqa7nkjYuTsl4966Ob7B28
