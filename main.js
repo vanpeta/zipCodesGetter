@@ -9,7 +9,7 @@ $('#sendAddress').click(function(e) {
   var numberOfResults = document.getElementById('numberOfResults').value || 500;
   var addressForGoogle = encodeURIComponent(address);
   $.ajax({
-  url: "http://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false",
+  url: "https://maps.googleapis.com/maps/api/geocode/json?address="+address+"&sensor=false",
   success: function(response){
       lat = response.results[0].geometry.location.lat;
       lng = response.results[0].geometry.location.lng;
