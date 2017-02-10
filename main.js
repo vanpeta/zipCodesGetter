@@ -20,8 +20,10 @@ $('#sendAddress').click(function(e) {
       success: function (response) {
         $('#postalCodesWrapper').removeClass('hidden');
         response.postalCodes.forEach(function(e) {
-          $('#postalCodes').append("'"+e.postalCode+"', ");
+          $('#postalCodes').append("<div class='code'>'"+e.postalCode+"', </div>");
         })
+        $('.total').remove();
+        $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: '+$('.code').length+"</div");
       }
     });
   });

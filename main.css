@@ -24,5 +24,11 @@ html {
 .hidden {
   display: none;
 }
-
+#postalCodes {
+  max-height: 30%;
+  overflow-y: scroll;
+}
+.code {
+  display: inline;
+}
 
