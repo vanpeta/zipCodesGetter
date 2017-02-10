@@ -1,0 +1,25 @@
+body {
+  background-image: url('./bground.png');
+  background-repeat: no-repeat;
+  background-position: cover;
+  margin: 0;
+  height: 100%;
+}
+html {
+    /* To make use of full height of page*/
+    min-height: 100%;
+    margin: 0;
+}
+
+#wrapper {
+  margin-top: 5%;
+}
+#content {
+	border-radius: 20px;
+	padding: 2%;
+}
+#getZipCodes {
+	margin-bottom: 2%
+}
+
+
