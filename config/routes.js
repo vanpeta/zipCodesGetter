@@ -12,7 +12,7 @@ router.get('/upload', function (req, res, next) {
 	var zipCode = req.query.zipcode;
 	var radius = req.query.radius;
 	rp({
-		url: 'https://www.zipcodeapi.com/rest/LZ6oL7k2QGYDanDX9bA9AuQaGK2F51MR1SfMZzOQgNuqa7nkjYuTsl4966Ob7B28/radius.json/'+zipCode+'/'+radius+'/km',
+		url: 'https://www.zipcodeapi.com/rest/'+process.env.KEY+'/radius.json/'+zipCode+'/'+radius+'/km',
 		json: true
 	})
 	.then(function (response) {

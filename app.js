@@ -1,7 +1,7 @@
 var express = require('express');
 var path = require('path');
 var routes = require('./config/routes');
-
+require('dotenv').load();
 var app = express();
 
 // uncomment after placing your favicon in /public
