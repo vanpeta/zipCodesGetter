@@ -4,8 +4,8 @@
  * Module dependencies.
  */
 
-var app = require('../server');
-var debug = require('debug')('landscaping:server');
+var app = require('../app');
+var debug = require('debug')('zipCodesApp:server');
 var http = require('http');
 
 /**
