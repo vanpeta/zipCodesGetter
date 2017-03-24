@@ -11,6 +11,9 @@ router.get('/', function (req, res, next) {
 router.get('/upload', function (req, res, next) {
 	var zipCode = req.query.zipcode;
 	var radius = req.query.radius;
+	if (zipCode.length !== 5) {
+		return res.status(400).json('This service is only available for the US')
+	}
 	rp({
 		url: 'https://www.zipcodeapi.com/rest/'+process.env.KEY+'/radius.json/'+zipCode+'/'+radius+'/km',
 		json: true

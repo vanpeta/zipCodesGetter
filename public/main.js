@@ -24,11 +24,14 @@ $('#sendAddress').click(function() {
             zipCode = component.long_name;
           }
         }
-        console.log(zipCode);
         $.ajax({
           type: 'GET',
-          url: "/upload?zipcode="+zipCode+"&radius="+radius
+          url: "/upload?zipcode="+zipCode+"&radius="+radius,
+          error: function(xhr, options, err) {
+            alert(xhr.responseJSON)
+          }
         }).done(function (zipCodes) {
+          console.log(zipCodes)
           var totalZipCodes = zipCodes.length;
           if (zipCodes.length > numberOfResults) {
             zipCodes.splice(numberOfResults, zipCodes.length-numberOfResults);
