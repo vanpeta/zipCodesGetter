@@ -41,7 +41,7 @@ $('#sendAddress').click(function() {
             $('#postalCodes').append("<div class='code'>'"+zc.zip_code+"', </div>");
           });
           $('.total').remove();
-          $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: '+totalZipCodes+"</div");
+          $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: '+totalZipCodes+"</div>");
         });
       }
     })
