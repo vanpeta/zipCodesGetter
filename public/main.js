@@ -1,9 +1,13 @@
 var zipCode;
+var country;
 $('#sendAddress').click(function() {
   $('#postalCodesWrapper').addClass('hidden');
   $('#postalCodes').empty();
   var address = document.getElementById('address').value;
-  var radius = Math.round(document.getElementById('radius').value*1.61) || 10;
+  var radius = Math.round(document.getElementById('radius').value*1.61) || 12;
+  if (radius > 30) {
+    radius = 30;
+  }
   var numberOfResults = document.getElementById('numberOfResults').value || 500;
   var addressForGoogle = encodeURIComponent(address);
   var lat;
@@ -23,25 +27,29 @@ $('#sendAddress').click(function() {
           if(component.types[0] == "postal_code") {
             zipCode = component.long_name;
           }
+          if (component.types[0] == "country") {
+            country = component.short_name;
+          }
         }
+        console.log("country ="+ country)
         $.ajax({
           type: 'GET',
-          url: "/upload?zipcode="+zipCode+"&radius="+radius,
+          url: "/upload?zipcode="+zipCode+"&radius="+radius+"&limit="+numberOfResults+"&country="+country,
           error: function(xhr, options, err) {
             alert(xhr.responseJSON)
           }
-        }).done(function (zipCodes) {
-          console.log(zipCodes)
-          var totalZipCodes = zipCodes.length;
+        }).done(function (response) {
+          var zipCodes = response.postalCodes;
+          console.log(zipCodes);
           if (zipCodes.length > numberOfResults) {
             zipCodes.splice(numberOfResults, zipCodes.length-numberOfResults);
           }
           $('#postalCodesWrapper').removeClass('hidden');
-          zipCodes.forEach(function (zc) {
-            $('#postalCodes').append("<div class='code'>'"+zc.zip_code+"', </div>");
+          zipCodes.forEach(function (zipCode) {
+            $('#postalCodes').append("<div class='code'>'"+zipCode.postalCode+"', </div>");
           });
           $('.total').remove();
-          $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: '+totalZipCodes+"</div>");
+          $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: '+zipCodes.length+"</div>");
         });
       }
     })
