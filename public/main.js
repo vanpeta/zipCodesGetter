@@ -44,7 +44,7 @@ $('#sendAddress').click(function() {
           $('.progress_bar').removeClass('waiting');
           $('#postalCodesWrapper').removeClass('hidden');
           zipCodes.forEach(function (zipCode) {
-            $('#postalCodes').append('<div class="code">'+zipCode.Code+', </div>');
+            $('#postalCodes').append('<div class="code">'+"'"+zipCode.Code+"', </div>");
           });
           $('.total').remove();
           $('#postalCodesWrapper').prepend('<div class="total">Serving: ' + response.DataList.length + '</div>');
