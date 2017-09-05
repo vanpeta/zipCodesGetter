@@ -6,9 +6,6 @@ $('#sendAddress').click(function() {
   $('#postalCodes').empty();
   var address = document.getElementById('address').value;
   var radius = Math.round(document.getElementById('radius').value*1.61) || 12;
-  if (radius > 30) {
-    radius = 30;
-  }
   var numberOfResults = document.getElementById('numberOfResults').value || 500;
   var addressForGoogle = encodeURIComponent(address);
   var lat;
@@ -40,16 +37,18 @@ $('#sendAddress').click(function() {
           }
         }).done(function (response) {
           var zipCodes = response.DataList;
+          var totalZipCodes = response.DataList.length;
           if (zipCodes.length > numberOfResults) {
             zipCodes.splice(numberOfResults, zipCodes.length-numberOfResults);
           }
           $('.progress_bar').removeClass('waiting');
           $('#postalCodesWrapper').removeClass('hidden');
           zipCodes.forEach(function (zipCode) {
-            $('#postalCodes').append("<div class='code'>'"+zipCode.Code+"', </div>");
+            $('#postalCodes').append('<div class="code">'+zipCode.Code+', </div>');
           });
           $('.total').remove();
-          $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: '+zipCodes.length+"</div>");
+          $('#postalCodesWrapper').prepend('<div class="total">Serving: ' + response.DataList.length + '</div>');
+          $('#postalCodesWrapper').prepend('<div class="total">Postal Codes found: : ' + totalZipCodes + '</div>');
         });
       }
     })
